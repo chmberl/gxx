@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>fancy</title>
+</head>
+<body>
+    <form action="/register_invitation" method="post">
+        <label for="code">邀请码：</label>
+        <input type="text" name="invitation_code" id="code"/>
+        {% module xsrf_form_html() %}
+        <input type="submit" value="提交">
+    </form>
+</body>
+</html>
