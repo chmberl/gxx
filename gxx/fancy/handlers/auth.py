@@ -97,6 +97,7 @@ class RegisterHandler(BaseHandler):
         time_expired = datetime.now() + timedelta(days=1)
         active = Active(uuid=uuid.NAMESPACE_URL,
                         user=user, time_expired=time_expired)
+        active.save()
         send_active_mail(user, active.uuid, mail='sendcloud')
 
 
@@ -128,6 +129,7 @@ class LoginHandler(BaseHandler):
                 else:
                     raise self.model.DoesNotExist()
             except self.model.DoesNotExist:
+                logger.info(u"登录失败")
                 self.render("login.html", error="incorrect password")
         else:
             self.write(form.errors)

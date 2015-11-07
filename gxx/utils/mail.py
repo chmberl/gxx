@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 
+import logging
 import json
 from tornado.httpclient import AsyncHTTPClient
 from tornado.escape import url_escape
 from tornado import ioloop
 import config
 
-
-def callback(response):
-    print response.code
+logger = logging.getLogger(__name__)
 
 
 class SendMail(object):
@@ -30,7 +29,7 @@ class SendMail(object):
         return "&".join(ret)
 
     def callback(self, response):
-        pass
+        logger.info(response.code)
 
     def send(self):
         url = self.url
@@ -46,7 +45,8 @@ class SendMail(object):
                                    validate_cert=False)
         else:
             self.http_client.fetch(url, method="POST", body=body,
-                                   callback=callback, follow_redirects=True,
+                                   callback=self.callback,
+                                   follow_redirects=True,
                                    validate_cert=False)
 
     def set_params(self):
