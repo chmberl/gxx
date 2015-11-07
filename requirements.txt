@@ -1,0 +1,7 @@
+pycurl
+psycopg2
+tornado
+wtforms
+wtforms_tornado
+bcrypt
+peewee
