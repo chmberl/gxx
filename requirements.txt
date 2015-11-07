@@ -1,4 +1,5 @@
 pycurl
+futures
 psycopg2
 tornado
 wtforms
