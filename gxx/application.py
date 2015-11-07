@@ -18,7 +18,7 @@ setting = dict(
     static_path=location("static"),
     xsrf_cookies=True,
     cookie_secret=config.COOKIE_SECRET,
-    login_url='/signin',
+    login_url='/register',
 )
 
 
