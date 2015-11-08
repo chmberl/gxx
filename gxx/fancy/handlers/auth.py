@@ -127,9 +127,11 @@ class LoginHandler(BaseHandler):
                     self.set_secure_cookie("fancy_user", str(user.id))
                     self.redirect("/")
                 else:
+                    logger.info(u"密码错误")
                     raise self.model.DoesNotExist()
             except self.model.DoesNotExist:
                 logger.info(u"登录失败")
+                self.set_status(400)
                 self.render("login.html", error="incorrect password")
         else:
             self.write(form.errors)
